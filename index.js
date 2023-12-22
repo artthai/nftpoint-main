@@ -40,7 +40,7 @@ app.post('/get_redeemable_point', async (req, res) => {
         };
 
         const response = await axios(axiosConfig);
-        const redeemablePoint = response.data.rows[0]?.redeemable_point || null;
+        const redeemablePoint = response.data.rows[0]?.redeemable_points || null;
 
         return { walletName, redeemablePoint };
       })
