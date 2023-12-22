@@ -33,9 +33,9 @@
       resultDiv.innerHTML = '<h2>Redeemable Points:</h2>';
       result.redeemablePoints.forEach(({ walletName, redeemablePoint }) => {
       const isHighPoint = redeemablePoint && redeemablePoint > 11400;
-      const highlightStyle = isHighPoint ? 'color: green; font-weight: bold;' : '';
+      const highlightStyle = isHighPoint ? 'color: red; font-weight: bold;' : '';
 
-      resultDiv.innerHTML += `<p style="${highlightStyle}">${walletName}: ${redeemablePoint || 'Not found'}</p>`;
+      resultDiv.innerHTML += `<p style="${highlightStyle}">${walletName} : ${redeemablePoint || 'Not found'}</p>`;
       });
     }
   </script>
