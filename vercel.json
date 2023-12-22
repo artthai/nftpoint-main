@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "builds": [{ "src": "app.js", "use": "@vercel/node" }],
+  "routes": [
+    {
+      "src": "/get_redeemable_point",
+      "methods": ["POST"],
+      "dest": "/get_redeemable_point"
+    },
+    {
+      "handle": "filesystem"
+    },
+    {
+      "src": "/.*",
+      "status": 404,
+      "dest": "/404.html"
+    }
+  ]
+}
