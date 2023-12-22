@@ -5,7 +5,7 @@
     {
       "src": "/get_redeemable_point",
       "methods": ["POST"],
-      "dest": "/get_redeemable_point"
+      "dest": "index.js"
     },
     {
       "handle": "filesystem"
