@@ -2,7 +2,7 @@ const express = require('express');
 const axios = require('axios');
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -40,8 +40,8 @@ app.post('/get_redeemable_point', async (req, res) => {
         };
 
         const response = await axios(axiosConfig);
-        const redeemablePoint = parseFloat(response.data.rows[0]?.redeemable_points)/10 || null;
-        //console.log(response.data.rows)
+        const redeemablePoint = response.data.rows[0]?.redeemable_point || null;
+
         return { walletName, redeemablePoint };
       })
     );
