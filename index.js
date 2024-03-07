@@ -61,7 +61,7 @@ app.post('/get_redeemable_point', async (req, res) => {
         const response = await axios(axiosConfig);
         const response2 = await axios(axiosConfig2);
         const redeemablePoint = parseFloat(response.data.rows[0]?.redeemable_points)/10 || null;
-        const claimTLM = response2.data.rows[0].amount || null;
+        const claimTLM = response2.data.rows[0]?.amount || null;
 
         return { walletName, redeemablePoint ,claimTLM };
       })
