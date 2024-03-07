@@ -55,7 +55,7 @@ app.post('/get_redeemable_point', async (req, res) => {
           method: 'POST',
           url: 'http://wax.eosphere.io/v1/chain/get_table_rows',
           headers: {},
-          data: fetchConfig,
+          data: fetchConfig2,
         };
 
         const response = await axios(axiosConfig);
