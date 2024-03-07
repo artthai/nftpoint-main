@@ -31,6 +31,19 @@ app.post('/get_redeemable_point', async (req, res) => {
           reverse: false,
           show_payer: false,
         };
+        const fetchConfig2 = {
+          json: true,
+          code: 'm.federation',
+          scope: 'm.federation',
+          table: 'minerclaim',
+          lower_bound: walletName,
+          upper_bound: walletName,
+          index_position: 1,
+          key_type: '',
+          limit: 1,
+          reverse: false,
+          show_payer: false,
+        };
 
         const axiosConfig = {
           method: 'POST',
@@ -38,11 +51,19 @@ app.post('/get_redeemable_point', async (req, res) => {
           headers: {},
           data: fetchConfig,
         };
+        const axiosConfig2 = {
+          method: 'POST',
+          url: 'http://wax.eosphere.io/v1/chain/get_table_rows',
+          headers: {},
+          data: fetchConfig,
+        };
 
         const response = await axios(axiosConfig);
+        const response2 = await axios(axiosConfig2);
         const redeemablePoint = parseFloat(response.data.rows[0]?.redeemable_points)/10 || null;
+        const claimTLM = response.data.rows[0]?.amount || null;
 
-        return { walletName, redeemablePoint };
+        return { walletName, redeemablePoint, claimTLM };
       })
     );
 
