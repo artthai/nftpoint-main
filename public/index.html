@@ -31,11 +31,11 @@
       // Display the result on the page
       const resultDiv = document.getElementById('result');
       resultDiv.innerHTML = '<h2>Redeemable Points:</h2>';
-      result.redeemablePoints.forEach(({ walletName, redeemablePoint, claimTLM }) => {
+      result.redeemablePoints.forEach(({ walletName, redeemablePoint }) => {
       const isHighPoint = redeemablePoint && redeemablePoint > 22800;
       const highlightStyle = isHighPoint ? 'color: red; font-weight: bold;' : '';
 
-      resultDiv.innerHTML += `<p style="${highlightStyle}">${walletName} : ${redeemablePoint : ${claimTLM} || 'Not found'}</p>`;
+      resultDiv.innerHTML += `<p style="${highlightStyle}">${walletName} : ${redeemablePoint || 'Not found'}</p>`;
       });
     }
   </script>
