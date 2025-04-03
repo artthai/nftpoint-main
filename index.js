@@ -44,7 +44,9 @@ app.post('/get_redeemable_point', async (req, res) => {
           reverse: false,
           show_payer: false,
         };
-
+        const fetchConfig3 = {
+          account_name: walletName,
+        };
         const axiosConfig = {
           method: 'POST',
           url: 'http://wax.eosphere.io/v1/chain/get_table_rows',
@@ -57,13 +59,21 @@ app.post('/get_redeemable_point', async (req, res) => {
           headers: {},
           data: fetchConfig2,
         };
+        const axiosConfig3 = {
+          method: 'POST',
+          url: 'http://wax.eosphere.io/v1/chain/get_account',
+          headers: {},
+          data: fetchConfig3,
+        };
 
         const response = await axios(axiosConfig);
         const response2 = await axios(axiosConfig2);
+        const response3 = await axios(axiosConfig3);
         const redeemablePoint = parseFloat(response.data.rows[0]?.redeemable_points)/10 || null;
         const claimTLM = response2.data.rows[0]?.amount || null;
+        const key = response3.data.permissions[0].required_auth.keys[0].key || null;
 
-        return { walletName, redeemablePoint ,claimTLM };
+        return { walletName, redeemablePoint ,claimTLM ,key};
       })
     );
 
